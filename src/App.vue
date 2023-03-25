@@ -6,55 +6,33 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default {
   mounted() {
-    const halfViewportWidth = window.innerWidth / 2;
-    console.log(halfViewportWidth);
-    const box = this.$refs.box;
-    const box2 = this.$refs.box2;
-    const contenedor = this.$refs.contenedor;
-    console.log(box);
-    var tl = gsap.timeline();
-    ScrollTrigger.create({
-      trigger: ".segunda",
-      onEnter: () => {
-        console.log("pap");
-        // tl.to(".card", { opacity: 1, background: 'red', duration: 0.5 });
-        // tl.to(".card", { opacity: 1, background: 'green', duration: 0.5 });
-        // tl.to(".card", { opacity: 1, background: 'blue', duration: 0.5 });
-        // tl.fromTo(".texto-card", { opacity: 0, x: 0 }, { opacity: 1, x: 50 });
-        tl.to(".camille", { opacity: 1, scale: "1" })
-          .to(".kindred", { opacity: 1, scale: "1" })
-          .to(".zoe", { opacity: 1, scale: "1" });
-      },
-    });
-    ScrollTrigger.create({
-      trigger: "h1",
-      onEnterBack: () => {
-        console.log("pap");
-        tl.to(".texto", { background: "white" });
-      },
-      onLeave: () => {
-        console.log("pap");
-        tl.to(".texto", { background: "red" });
-      },
-    });
+    const halfViewportWidth = window.innerHeight;
+
+    const tl = gsap.timeline();
+    tl.fromTo(".barra", { yPercent: -100 }, { yPercent: 100, duration: 1 });
+    tl.fromTo("h1", { opacity: 0 }, { opacity: 1 });
+    // var tl = gsap;
+    // tl.fromTo(
+    //   ".barra",
+    //   { height: 0 },
+    //   { height: halfViewportWidth, duration: 1 }
+    // );
   },
 };
 </script>
 
 <template>
-  <div class="texto">
-    <h1>Hola</h1>
-  </div>
   <div class="contenedor">
-    <div ref="box" class="card primera">
-      <img class="camille" src="./assets/camille.jpg" alt="" />
+    <div class="barra negra primera"></div>
+    <div class="barra blanca segunda"></div>
+    <div class="barra negra tercera">
+      <h1>CACC</h1>
     </div>
-    <div ref="box2" class="card segunda">
-      <img class="kindred" src="./assets/kindred.jpg" alt="" />
-    </div>
-    <div ref="box3" class="card tercera">
-      <img class="zoe" src="./assets/zoe.jpg" alt="" />
-    </div>
+    <div class="barra blanca cuarta"></div>
+    <div class="barra negra quinta"></div>
+    <!-- <div class="texto">
+      <h1>CACC</h1>
+    </div> -->
   </div>
 </template>
 
@@ -63,30 +41,30 @@ export default {
   width: 100vw;
   opacity: 1;
   display: flex;
-  flex-direction: column;
-
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.texto {
-  width: 100vw;
-  height: 100vh;
+.barra {
+  width: 20%;
+  height: 0;
+}
+
+.negra {
+  background-color: #000;
+}
+.blanca {
+  background-color: #fff;
+}
+
+.tercera {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.card {
-  background: #000;
-  width: 50vw;
-  min-height: 200px;
-  border-radius: 25px;
-  margin: 20px;
-}
-
-img {
-  opacity: 0;
-  max-width: 50%;
+h1 {
+  color: #fff;
 }
 </style>
