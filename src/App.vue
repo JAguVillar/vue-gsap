@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default {
   mounted() {
-    const halfViewportWidth = window.innerWidth / 2
+    const halfViewportWidth = window.innerWidth / 2;
     console.log(halfViewportWidth);
     const box = this.$refs.box;
     const box2 = this.$refs.box2;
@@ -14,25 +14,27 @@ export default {
     console.log(box);
     var tl = gsap.timeline();
     ScrollTrigger.create({
-      trigger: '.segunda',
+      trigger: ".segunda",
       onEnter: () => {
-        console.log('pap');
+        console.log("pap");
         // tl.to(".card", { opacity: 1, background: 'red', duration: 0.5 });
         // tl.to(".card", { opacity: 1, background: 'green', duration: 0.5 });
         // tl.to(".card", { opacity: 1, background: 'blue', duration: 0.5 });
         // tl.fromTo(".texto-card", { opacity: 0, x: 0 }, { opacity: 1, x: 50 });
-        tl.fromTo("img", { opacity: 0, scale: '2' }, { opacity: 1, scale: '1' });
+        tl.to(".camille", { opacity: 1, scale: "1" })
+          .to(".kindred", { opacity: 1, scale: "1" })
+          .to(".zoe", { opacity: 1, scale: "1" });
       },
     });
     ScrollTrigger.create({
-      trigger: 'h1',
+      trigger: "h1",
       onEnterBack: () => {
-        console.log('pap');
-        tl.to(".texto", { background: 'white' });
+        console.log("pap");
+        tl.to(".texto", { background: "white" });
       },
       onLeave: () => {
-        console.log('pap');
-        tl.to(".texto", { background: 'red' });
+        console.log("pap");
+        tl.to(".texto", { background: "red" });
       },
     });
   },
@@ -45,12 +47,13 @@ export default {
   </div>
   <div class="contenedor">
     <div ref="box" class="card primera">
-      <h1 class="texto-card">a</h1>
+      <img class="camille" src="./assets/camille.jpg" alt="" />
     </div>
     <div ref="box2" class="card segunda">
-      <img src="./assets/kindred.jpg" alt="">
+      <img class="kindred" src="./assets/kindred.jpg" alt="" />
     </div>
     <div ref="box3" class="card tercera">
+      <img class="zoe" src="./assets/zoe.jpg" alt="" />
     </div>
   </div>
 </template>
@@ -72,7 +75,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .card {
