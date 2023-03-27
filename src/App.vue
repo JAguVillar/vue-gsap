@@ -6,65 +6,121 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default {
   mounted() {
-    const halfViewportWidth = window.innerHeight;
-
+    const texto1 = this.$refs.texto1.offsetWidth;
+    const texto2 = this.$refs.texto2.offsetWidth;
+    const texto3 = this.$refs.texto3.offsetWidth;
+    const total = texto1 + texto2 + texto3
+    console.log(texto1, texto2, texto3);
     const tl = gsap.timeline();
-    tl.fromTo(".barra", { yPercent: -100 }, { yPercent: 100, duration: 1 });
-    tl.fromTo("h1", { opacity: 0 }, { opacity: 1 });
-    // var tl = gsap;
-    // tl.fromTo(
-    //   ".barra",
-    //   { height: 0 },
-    //   { height: halfViewportWidth, duration: 1 }
-    // );
+    tl.to(".linea", { width: total, opacity: 1, duration: 0 })
+      .to(".texto-entradas", { opacity: 1, duration: 0 }, '+=0.5')
+      .to(".local", { opacity: 1, duration: 0 }, '+=0.5')
+      .to(".visitante", { opacity: 1, duration: 0 }, '+=0.5')
+      .to(".home", { height: '95vh' }, '+=0.5')
+      .to(".entradas", { height: 'fit-content' })
+
+
   },
 };
 </script>
 
 <template>
-  <div class="contenedor">
-    <div class="barra negra primera"></div>
-    <div class="barra blanca segunda"></div>
-    <div class="barra negra tercera">
-      <h1>CACC</h1>
+  <div class="nav">
+  </div>
+  <div class="home">
+    <img class="estadio" src="./assets/home.webp" alt="" srcset="">
+  </div>
+  <div class="entradas">
+    <div class="equipos">
+      <div>
+        <span ref="texto1" class="texto-entradas">ENTRADAS </span>
+        <span ref="texto2" class="local">CENTRAL - </span>
+        <span ref="texto3" class="visitante">BOCA JUNIORS</span>
+
+      </div>
+      <div class="linea"></div>
     </div>
-    <div class="barra blanca cuarta"></div>
-    <div class="barra negra quinta"></div>
-    <!-- <div class="texto">
-      <h1>CACC</h1>
-    </div> -->
+    <div class="entradas-bottom">
+      <div class="boton">
+        COMPRAR AHORA
+      </div>
+      <img class="nike" src="./assets/nike-partner.webp" alt="">
+    </div>
+  </div>
+  <div class="entradas-invisible">
   </div>
 </template>
 
 <style scoped>
-.contenedor {
-  width: 100vw;
-  opacity: 1;
+.nav {
+  height: 128px;
+
+  background: #00009c;
+}
+
+.home {
+
+  height: 0vh;
+}
+
+.estadio {
+  width: 100%;
+  height: 100%;
+}
+
+.entradas {
+  background: #00009c;
+  height: 100vh;
+  padding: 64px 64px 0px 64px;
+
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.barra {
-  width: 20%;
-  height: 0;
+.equipos {
+  font-size: 100px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -11px;
+  text-align: left;
 }
 
-.negra {
-  background-color: #000;
-}
-.blanca {
-  background-color: #fff;
+.texto-entradas {
+  width: fit-content;
+  opacity: 0;
 }
 
-.tercera {
+.local {
+  width: fit-content;
+  opacity: 0;
+}
+
+.visitante {
+  width: fit-content;
+  opacity: 0;
+}
+
+.linea {
+  height: 20px;
+  opacity: 0;
+  background: white;
+}
+
+.entradas-bottom {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-top: 129px;
 }
 
-h1 {
+.boton {
   color: #fff;
+  font-size: 18px;
+}
+
+.nike {
+  height: 54px;
+  max-width: 164px;
 }
 </style>
